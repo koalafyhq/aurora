@@ -1,16 +1,13 @@
-FROM node:lts-alpine AS builder
+FROM node:lts-alpine
 
 WORKDIR /app
 
+COPY yarn.lock .
 COPY . .
+
 RUN yarn install
 RUN yarn build
-RUN yarn run export
 
-FROM node:lts-alpine
-WORKDIR /app
+EXPOSE 3000
 
-RUN yarn global add serve
-COPY --from=builder /app/out .
-
-CMD ["serve", "-s", ".", "-p", "80"]
+CMD ["yarn", "start"]

@@ -1,19 +1,29 @@
-This is a Web Vitals Dashboard project build with [Next.js](https://nextjs.org/)
+# Aurora
 
-## Getting Started
+The live version is on [aurora.koalafy.dev](https://aurora.koalafy.dev/).
 
-First
+## Stacks
+
+- [React](https://yarn.pm/react)
+- [React DOM](https://yarn.pm/react-dom)
+- [Next.js](https://yarn.pm/next)
+- [Yarn](https://yarnpkg.com)
+
+## Development
+
+To prevent conflict in module resolution, make sure to use [Yarn](https://yarnpkg.com)
+so `yarn.lock` won't conflict with `package-lock.json`.
+
+- Clone repo: `git clone git@github.com:koalafyhq/aurora.git`
+- Install dependencies: `yarn`
+- Start development server: `yarn dev`
+
+And using stable Node.js version is highly recommended.
+
+## Production
+
+If `.next` directory is not exists, you need to build it first:
 
 ```bash
-yarn install
+yarn build
 ```
-
-Run the development server:
-
-```bash
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.

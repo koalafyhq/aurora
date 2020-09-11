@@ -1,12 +1,16 @@
 import Head from "next/head";
 import Link from "next/link";
+import Error from "next/error";
 
 import Card from "../../components/Card";
 import Metric from "../../components/Metric";
 import Subtitle from "../../components/Subtitle";
 import Footer from "../../components/Footer";
 
-const Report = ({ reports }) => {
+const Report = ({ reports, errorCode }) => {
+  if (errorCode) {
+    return <Error statusCode={errorCode} />;
+  }
   return (
     <div className="container">
       <Head>
@@ -146,28 +150,15 @@ const Report = ({ reports }) => {
   );
 };
 
-export async function getStaticPaths() {
-  // const res = await fetch('https://.../posts')
-  // const posts = await res.json()
-
-  const paths = [
-    {
-      params: { id: "28f55853-241d-46c7-9b60-9d4ff911bb00" },
-    },
-  ];
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `https://aurora-api.koalafy.dev/reports/${params.id}`
-  );
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+  const res = await fetch(`https://aurora-api.koalafy.dev/reports/${id}`);
   const reports = await res.json();
-
+  const errorCode = res.status === 200 ? false : res.status;
   return {
     props: {
       reports,
+      errorCode,
     },
   };
 }

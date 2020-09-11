@@ -21,7 +21,12 @@ const Home = () => {
               browser
             </p>
             <div className="home__button">
-              <Button href="/contact">Contact</Button>
+              <Button
+                href="https://koalafyhq.com/contact"
+                isExternalLink={true}
+              >
+                Contact
+              </Button>
               <Button
                 filled={true}
                 href="/reports/28f55853-241d-46c7-9b60-9d4ff911bb00"

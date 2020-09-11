@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-const Button = ({ filled, children, href }) => {
+const Button = ({ filled, children, href, isExternalLink = false }) => {
   return (
     <>
       <Link href={href}>
-        <a>{children}</a>
+        <a target={`${isExternalLink ? "_blank" : ""}`}>{children}</a>
       </Link>
       <style jsx>{`
         a {
